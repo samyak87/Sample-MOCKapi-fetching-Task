@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+h1{
+  text-align: center;
+}
+
+.post-list{
+   padding: 5%;
+}
+
+.lists{
+  line-height: 100px;
+  font-weight: 500;
+  font-family: cursive;
+  
+}

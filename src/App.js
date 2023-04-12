@@ -1,24 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
-
+import GetList from './components/GetList';
+import {useEffect, useState} from 'react';
 function App() {
+  const [propertyList, setPropertyList]= useState([])
+  useEffect(()=>{
+   async function fetchpropertyList() {
+    try{
+    const requestURL='https://64369e578205915d34f8504d.mockapi.io/List/';
+    const response = await fetch(requestURL);
+    const responseJSON=await response.json();
+    console.log(responseJSON);
+    
+    setPropertyList(responseJSON);
+    }
+    catch{
+    console.log("error");
+    }
+  }
+  fetchpropertyList();
+  },[]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+     <h1>Property List fetched from MockAPI</h1>
+      <GetList propertyList={propertyList}/>
+  
+    </>
   );
 }
 
